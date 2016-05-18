@@ -16,5 +16,9 @@
 !/log/.keep
 /tmp
 
+#Ignore Mac DS_Store and RubyMine ideas
+.DS_Store
+.idea/*
+
 # Don't check in node_modules
 node_modules
