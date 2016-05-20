@@ -13,4 +13,28 @@ class ImagesControllerTest < ActionController::TestCase
     assert_redirected_to images_path
     assert_equal Image.last.link, "asdf"
   end
+
+  def test_destroy
+    image = Image.create({link: 'asdf'})
+
+    assert_difference 'Image.count', -1 do
+      delete :destroy, id: image.id
+    end
+    assert_redirected_to images_path
+  end
+
+  def test_index__with_images
+    10.times { Image.create({link: 'asdf'}) }
+    Image.create({link: 'asdf'})
+    Image.create({link: 'asdf'})
+    Image.create({link: 'asdf'})
+
+    get :index
+    assert_response :success
+  end
+
+  def test_index__no_images
+    get :index
+    assert_response :success
+  end
 end
