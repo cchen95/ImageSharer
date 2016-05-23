@@ -8,14 +8,14 @@ class ImagesControllerTest < ActionController::TestCase
 
   def test_create
     assert_difference 'Image.count' do
-      post :create, {image: {link: "asdf"}}
+      post :create, {image: {link: "https://asdf"}}
     end
     assert_redirected_to images_path
-    assert_equal Image.last.link, "asdf"
+    assert_equal Image.last.link, "https://asdf"
   end
 
   def test_destroy
-    image = Image.create({link: 'asdf'})
+    image = Image.create!({link: 'https://idk'})
 
     assert_difference 'Image.count', -1 do
       delete :destroy, id: image.id

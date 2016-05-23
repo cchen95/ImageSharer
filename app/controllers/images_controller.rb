@@ -11,7 +11,8 @@ class ImagesController < ApplicationController
 		if @image.save
 			redirect_to images_path, notice: "Image successfully saved: #{@image.link}"
 		else
-			redirect_to images_path, notice: "Image link upload unsuccessful"
+			flash[:notice] = "Image link upload unsuccessful"
+			render :new
 		end
 	end
 
