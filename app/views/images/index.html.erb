@@ -1,18 +1,25 @@
 
 <h1> Listing Images </h1>
 
-<%= link_to "New Image", new_image_path %>
-<table>
-	<tbody>
+<div>
+  <%= link_to new_image_path, class: 'btn btn-primary' do %>
+    <i class="glyphicon glyphicon-plus"></i> Add New Image
+  <% end %>
+</div>
+<div class='container-fluid'>
+  <div class='row'>
     <% @images.each do |image| %>
-      <tr>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+      
         <!-- <td><%= image.link %></td> -->
         <!-- <td><%= image_tag image.link, :style => "max-width:400px"%></td> -->
         <!-- <td><img src = <%= image.link %> style="max-width:400px;"></td> -->
-        <td><%= link_to image_tag(image.link, :class => "index_image"), image.link%></td>
-        <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <%= link_to image_tag(image.link, class: "index_image img-circle"), image.link%>
+        <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+
 <p id="notice"><%= notice %></p>

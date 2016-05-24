@@ -1,6 +1,7 @@
 // Place all the styles related to the images controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .index_image{
 	max-width:400px
 }
@@ -8,4 +9,9 @@
 	display:inline;
 	background-color:red;
 	padding:10px;
+}
+@brand-primary: darken(#428bca, 6.5%);
+.rounded_edge_container{
+	background-color:#337ab7;
+	border-radius: 25px;
 }
