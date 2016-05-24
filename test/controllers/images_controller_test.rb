@@ -24,10 +24,10 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   def test_index__with_images
-    10.times { Image.create({link: 'asdf'}) }
-    Image.create({link: 'asdf'})
-    Image.create({link: 'asdf'})
-    Image.create({link: 'asdf'})
+    10.times { Image.create({link: 'https://asdf'}) }
+    Image.create({link: 'https://asdf'})
+    Image.create({link: 'https://asdf'})
+    Image.create({link: 'https://asdf'})
 
     get :index
     assert_response :success
@@ -37,4 +37,26 @@ class ImagesControllerTest < ActionController::TestCase
     get :index
     assert_response :success
   end
+
+  def test_edit
+    image = Image.create!({link: 'https://asdf'})
+    get :edit, id: image.id
+    assert_response :success
+  end
+
+  def test_update
+    image = Image.create!({link: 'https://asdf' })
+    patch :update, id: image.id, image: {tag_list: ["asdf", "asd", "as", "a"]}
+    assert_redirected_to images_path
+    assert_equal image.tag_list, ["asdf", "asd", "as", "a"]
+  end
+
+  def test_update__remove_tags
+    image = Image.create!({link: 'https://asdf', tag_list: ["asdf", "asd", "as", "a"] })
+    assert_equal image.tag_list, ["asdf", "asd", "as", "a"]
+    patch :update, id: image.id, image: {tag_list: []}
+    image.reload
+    assert_predicate image.tag_list, :empty?
+  end
+
 end
