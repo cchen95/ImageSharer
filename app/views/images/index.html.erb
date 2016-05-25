@@ -5,6 +5,7 @@
   <%= link_to new_image_path, class: 'btn btn-primary' do %>
     <i class="glyphicon glyphicon-plus"></i> Add New Image
   <% end %>
+  <%= link_to 'Display All', images_path, class: 'btn btn-info' %>
 </div>
 <div class='container-fluid'>
   <div class='row'>
@@ -12,8 +13,11 @@
       <div class="col-md-4 col-sm-6 col-xs-12">
         <%= link_to image_tag(image.link, class: "index_image img-circle"), image.link%>
         <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-        <p> Tags: <%= image.tag_list %></p>
-        <%= link_to edit_image_path(image), class: 'btn btn-primary' do %>
+        <br>
+        Tags: <% image.tag_list.each do |tag| %>
+          <%= link_to tag, images_path(tag_name: tag), class: 'btn btn-xs btn-info' %>
+        <% end %>
+        <%= link_to edit_image_path(image), class: 'btn btn-primary btn-xs' do %>
           <i class="glyphicon glyphicon-pencil"></i> Modify Tags
         <% end %>
       </div>

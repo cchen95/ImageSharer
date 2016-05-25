@@ -59,4 +59,13 @@ class ImagesControllerTest < ActionController::TestCase
     assert_predicate image.tag_list, :empty?
   end
 
+  def test_index__show_tags
+    image1 = Image.create!({link: 'https://asdf', tag_list: ["testtag1", "testtag2", "testtag3", "testtag4"] })
+    image2 = Image.create!({link: 'https://asdf', tag_list: ["testtag5", "testtag6", "testtag7", "testtag8"] })
+    image3 = Image.create!({link: 'https://asdf', tag_list: ["testtag1", "testtag2", "testtag3", "testtag4"] })
+    get :index, tag_name: 'testtag2'
+    assert_equal assigns["images"], [image1, image3]
+    assert_response :success
+  end
+
 end

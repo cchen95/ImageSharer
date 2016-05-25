@@ -1,9 +1,13 @@
 <h1>Images#new</h1>
 <%= form_for @image do |f| %>
 	<%= f.label :link %>:
-	<%= f.text_field :link %>
+	<%= f.text_field :link %><br>
+	<%= f.label :tags %>
+    <%= f.text_field :tag_list, value:@image.tag_list.to_s %>
 	<br>
 	<%= f.submit %>
 <% end %>
-
+<%= link_to images_path, class: "btn btn-primary" do %>
+	<i class="glyphicon glyphicon-circle-arrow-left"></i> Back
+<% end %>
 <p id="notice"><%= notice %></p>
