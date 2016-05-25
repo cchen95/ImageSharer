@@ -17,7 +17,7 @@ class ImagesController < ApplicationController
 	end
 
 	def image_params
-		params.require('image').permit('link')
+		params.require('image').permit('link', :tag_list)
 	end
 
 	def destroy
@@ -25,6 +25,17 @@ class ImagesController < ApplicationController
     if @image.present?
       @image.destroy
     end
-    redirect_to images_path, notice: "Immage successfully destroyed"
+    redirect_to images_path, notice: "Image successfully destroyed"
+  end
+
+  def edit
+  	@image = Image.find(params[:id])
+  end
+
+  def update
+  	@image = Image.find(params[:id])
+  	@image.tag_list = params[:image][:tag_list]
+  	@image.save
+  	redirect_to images_path, notice: "Image tags updated"
   end
 end
