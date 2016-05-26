@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   #get 'new/edit'
 
   #get 'new/destroy'
-
   resources :users
   resources :images
 

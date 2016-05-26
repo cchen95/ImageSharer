@@ -1,6 +1,11 @@
 class ImagesController < ApplicationController
 	def index
-		@images = Image.all
+		tag = params[:tag_name]
+  	if tag.nil?
+			@images = Image.all
+		else
+			@images = Image.tagged_with(tag)
+		end
 	end
 	def new
 		@image = Image.new
