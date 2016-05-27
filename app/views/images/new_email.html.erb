@@ -1,0 +1,13 @@
+<%= link_to images_path, class: "btn btn-primary" do %>
+	<i class="glyphicon glyphicon-circle-arrow-left"></i> Back
+<% end %>
+<p id="notice" class="text-warning"><%= notice %></p>
+<%= form_for(@email_form, as: 'elephant', url: images_send_path, html: { method: :post }) do |f| %>
+  <%= f.label :target, "Email to:" %>
+  <%= f.text_field :target%>
+  <%= f.submit("Send Email") %>
+  <br>
+  <%= f.label :message, "Message:" %>
+  <div><%= f.text_area :message %></div>
+  
+<% end %>

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   #get 'new/edit'
-
+  get '/images/:id/new_email' => 'images#new_email', as: :images_email
+  post '/images/:id/send_email' => 'images#send_email', as: :images_send
   #get 'new/destroy'
   resources :users
   resources :images
+
 
 
   get 'welcome/index'
@@ -27,12 +29,12 @@ Rails.application.routes.draw do
   # Example resource route with options:
   #   resources :products do
   #     member do
-  #       get 'short'
+  #       get 'short'     /products/:id/short
   #       post 'toggle'
   #     end
   #
   #     collection do
-  #       get 'sold'
+  #       get 'sold'     /products/sold
   #     end
   #   end
 

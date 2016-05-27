@@ -20,6 +20,8 @@
         <%= link_to edit_image_path(image), class: 'btn btn-primary btn-xs' do %>
           <i class="glyphicon glyphicon-pencil"></i> Modify Tags
         <% end %>
+        <br>
+        <%= link_to 'Share', images_email_path(image), class: 'btn btn-default btn-xs' %>
       </div>
     <% end %>
   </div>
